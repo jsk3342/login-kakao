@@ -2,6 +2,11 @@
 
 /* login */
 .login-wrap {
+    background: radial-gradient(96.74% 276.79% at 3.59% 5.28%, #F0F4FF 0%, #c4c9da 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     height: 100vh;
     text-align: center;
     background-color: rgb(33, 165, 165);
