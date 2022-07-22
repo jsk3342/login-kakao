@@ -112,6 +112,10 @@
     background-size: 50px 50px;
 }
 
+.link-button.kakao {
+    background-image: url(./icon/Group\ 10083.png);
+}
+
 .link-button.google {
     background-image: url(./icon/Group\ 10084.png);
 }
