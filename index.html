@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이리On</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="flex">
+        <div class="login-wrap">
+            <div class="login-inner">
+                <h2>로그인</h2>
+                <input placeholder="ID" type="text">
+                <input placeholder="Password" type="password">
+                <div class="button-flex">
+                    <button type="button">아이디 저장</button>
+                    <button type="button">아이디 / 비밀번호 찾기</button>
+                </div>
+                <button class="login-button" type="button">로그인</button>
+                <p class="or">또는</p>
+                <div class="link-button-wrap">
+                    <button class="link-button kakao"></button>
+                    <button class="link-button google"></button>
+                    <button class="link-button facebook"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('63491befab658b18577dfd45b4dc2a75'); //발급받은 키 중 javascript키를 사용해준다.
+        console.log(Kakao.isInitialized()); // sdk초기화여부판단
+        //카카오로그인
+        function kakaoLogin() {
+            Kakao.Auth.login({
+              success: function (response) {
+                Kakao.API.request({
+                  url: '/v2/user/me',
+                  success: function (response) {
+                      console.log(response)
+                  },
+                  fail: function (error) {
+                    console.log(error)
+                  },
+                })
+              },
+              fail: function (error) {
+                console.log(error)
+              },
+            })
+          }
+        //카카오로그아웃  
+        function kakaoLogout() {
+            if (Kakao.Auth.getAccessToken()) {
+              Kakao.API.request({
+                url: '/v1/user/unlink',
+                success: function (response) {
+                    console.log(response)
+                },
+                fail: function (error) {
+                  console.log(error)
+                },
+              })
+              Kakao.Auth.setAccessToken(undefined)
+            }
+          } 
+        
+        const $kakaoBtn = document.querySelector('.kakao');
+        $kakaoBtn.addEventListener('click', kakaoLogin);
+        
+        </script>
+</body>
+</html>
